@@ -155,8 +155,8 @@ cython_debug/
 # VSCode
 .vscode/
 
+# idea
+.idea/
+
 # random files for debug
 out.json
-
-# heavy depedencies
-assets/*

@@ -1,0 +1,6 @@
+argparse
+beautifulsoup4
+requests
+selenium
+multiprocess
+undetected-chromedriver

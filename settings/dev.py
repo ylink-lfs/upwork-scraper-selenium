@@ -3,8 +3,8 @@ import platform
 from settings import *
 
 TOTAL_JOB_SCRAPE = 15
-MIN_SLEEP_SEC = 1
-MAX_SLEEP_SEC = 3
+MIN_SLEEP_SEC = 0
+MAX_SLEEP_SEC = 1
 WEBDRIVER_DIR = os.path.join(ASSETS_ROOT, "bin", "chromedriver" + ".exe" if "Windows" in platform.system() else "")
 BROWSER_DIR = None
 CONCURRENCY_FACTOR = 2

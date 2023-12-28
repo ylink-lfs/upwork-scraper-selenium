@@ -1,4 +1,3 @@
-import copy
 import json
 import logging
 import random
@@ -10,12 +9,10 @@ import undetected_chromedriver
 from bs4 import BeautifulSoup
 from multiprocess import Process, Manager, Lock
 from pyvirtualdisplay import Display
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
+from selenium.webdriver.support.ui import WebDriverWait
 
 from utils import RetryLimitExceedException
 
@@ -53,15 +50,71 @@ class UpworkJobScrapeManager:
         expertises = set()
         WebDriverWait(driver, self.pageload_timeout).until(EC.presence_of_all_elements_located((By.XPATH, "//section[@class='air3-card-section py-4x']")))
         self._random_sleep()
+
         title_element = driver.find_element(By.XPATH, "//h4[@class='m-0']")
         job_desc["title"] = title_element.text.strip()
+
+        detail_element = driver.find_element(By.XPATH, "//p[@class='text-body-sm']")
+        job_desc["description"] = detail_element.text.strip()
+
+        area_restriction_element = driver.find_element(By.XPATH, "//span[@class='d-none d-md-inline']")
+        job_desc["area_restriction"] = area_restriction_element.text.strip()
+
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         skills = soup.find_all("span", {"class": "air3-badge air3-badge-highlight badge disabled"})
         for skill in skills:
             expertises.add(skill.text.strip())
         if '' in expertises:
-            logging.warning(f"found empty str in expertise")
-        job_desc["expertises"] = list(expertises)
+            logging.warning(f"found empty str in expertise like {expertises}, original skills like {skills}, job_url {detail_url}")
+        job_desc["skill_and_expertise"] = list(expertises)
+        job_feature_elements = driver.find_elements(By.XPATH, "//li[@data-v-ad039828='']")
+        job_desc.update(
+            dict.fromkeys(
+                [
+                    "Project Type", 
+                    "Experience Level", 
+                    "Duration",
+                    "Contract To Fulltime",
+                    "Estimated Job Duration",
+                    "Estimated Job Pay",
+                    "Remote Type",
+                ], None)
+        )
+        for i in range(len(job_feature_elements)):
+            job_feature_element_src = job_feature_elements[i].get_attribute("outerHTML")
+            sp = BeautifulSoup(job_feature_element_src, 'html.parser')
+            desc_text = sp.find("strong", {"data-v-ad039828": ""})
+            description = sp.find("div", {"class": "description"})
+            if description:
+                description = description.text.strip()
+            else:
+                description = ""
+            if description in ["Project Type", "Experience Level", "Duration", "Fixed-price"]:
+                job_desc[description] = desc_text.text.strip()
+            elif "This job has the potential to turn into a full time role" in description:
+                job_desc["Contract To Fulltime"] = True
+            else:
+                icon_name = sp.find("div", {"class": "air3-icon md"})["data-cy"]
+                if icon_name == "clock-hourly":
+                    job_desc["Estimated Job Duration"] = desc_text.text.strip()
+                elif icon_name == "clock-timelog":
+                    pay_elems = sp.find_all("p", {"class": "m-0"})
+                    pay_lower = pay_elems[0].find("strong", {"data-v-ad039828": ""}).text.strip()
+                    pay_upper = pay_elems[-1].find("strong", {"data-v-ad039828": ""}).text.strip()
+                    job_desc["Estimated Job Pay"] = f"{pay_lower} ~ {pay_upper}"
+                elif icon_name == "local":
+                    job_desc["Remote Type"] = desc_text.text.strip()
+                else:
+                    logging.warning(f"met unexpected description case, description as {description}, url {detail_url}")
+        job_status_elements = soup.find_all("li", {"class": "ca-item"})
+        for job_status_element in job_status_elements:
+            key = job_status_element.find("span", {"class": "title"})
+            if not key:
+                key = job_status_element.find("div", {"class": "title"})
+            val = job_status_element.find("span", {"class": "value"})
+            if not val:
+                val = job_status_element.find("div", {"class": "value"})
+            job_desc[key.text.strip()[:-1]] = val.text.strip()
         job_desc["url"] = detail_url
         logging.info(f"Scrape job {job_desc}")
         scraped_ls.append(json.dumps(job_desc))
@@ -135,6 +188,7 @@ class UpworkJobScrapeManager:
     
     def do(self):
         self._init_concurrency()
+        scrape_start_time = time.time()
         while True:
             alldone = True
             for p in self.ps:
@@ -150,8 +204,12 @@ class UpworkJobScrapeManager:
         res_l = []
         for e in self.scraped_job_ls:
             res_l.append(json.loads(e))
+        res = {
+            "scrape_start_time": scrape_start_time,
+            "jobs": res_l
+        }
         with open(self.output_dir, "w") as f:
-            json.dump(res_l, f)
+            json.dump(res, f)
         logging.info(f"waiting for subprocess gracefully quit...")
         time.sleep(5)
         for p in self.ps:
@@ -161,6 +219,7 @@ class UpworkJobScrapeManager:
                 pass
     
     def do_sync(self):
+        scrape_start_time = time.time()
         while len(self.scraped_job_ls) < self.total_job_scrape:
             self._handle_job_list_page(self.assigned_pagenum + 1, self.scraped_job_ls, self.init_lock)
             scraped_n = len(self.scraped_job_ls)
@@ -170,5 +229,9 @@ class UpworkJobScrapeManager:
         res_l = []
         for e in self.scraped_job_ls:
             res_l.append(json.loads(e))
+        res = {
+            "scrape_start_time": scrape_start_time,
+            "jobs": res_l
+        }
         with open(self.output_dir, "w") as f:
-            json.dump(res_l, f)
+            json.dump(res, f)

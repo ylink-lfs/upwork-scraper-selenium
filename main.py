@@ -29,7 +29,6 @@ if __name__ == "__main__":
         initial_url = utils.concat_upwork_initial_url(args.main_category, args.sub_category)
         doer = scraper.UpworkJobScrapeManager(initial_url, settings.WEBDRIVER_DIR, settings.BROWSER_DIR, settings.USE_VDISPLAY, settings.TOTAL_JOB_SCRAPE, settings.UPOWORK_JOBS_ONE_PAGE, settings.MIN_SLEEP_SEC, settings.MAX_SLEEP_SEC, settings.PAGELOAD_TIMEOUT, settings.CONCURRENCY_FACTOR, args.output)
         doer.do()
-        # doer.do_sync()
         if not os.path.exists(args.output) or os.path.getsize(args.output) == 0:
             raise FileNotFoundError(args)
         logging.info(f"upwork scraper got result size {os.path.getsize(args.output)}")

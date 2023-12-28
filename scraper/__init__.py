@@ -2,13 +2,14 @@ import copy
 import json
 import logging
 import random
-import sys
+import platform
 import time
 import traceback
 import undetected_chromedriver
 
 from bs4 import BeautifulSoup
 from multiprocess import Process, Manager, Lock
+from pyvirtualdisplay import Display
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -20,7 +21,7 @@ from utils import RetryLimitExceedException
 
 
 class UpworkJobScrapeManager:
-    def __init__(self, initial_url, webdriver_dir, total_job_scrape, jobs_one_page, min_sleep_sec, max_sleep_sec, pageload_timeout, concurrency_factor, output_dir):
+    def __init__(self, initial_url, webdriver_dir, browser_dir, use_vdisplay, total_job_scrape, jobs_one_page, min_sleep_sec, max_sleep_sec, pageload_timeout, concurrency_factor, output_dir):
         self.min_sleep_sec = min_sleep_sec
         self.max_sleep_sec = max_sleep_sec
         self.pageload_timeout = pageload_timeout
@@ -31,6 +32,8 @@ class UpworkJobScrapeManager:
         self.output_dir = output_dir
 
         self.webdriver_dir = webdriver_dir
+        self.browser_dir = browser_dir
+        self.use_vdisplay = use_vdisplay
 
         self.manager = Manager()
         self.scraped_job_ls = self.manager.list()
@@ -64,11 +67,23 @@ class UpworkJobScrapeManager:
         scraped_ls.append(json.dumps(job_desc))
     
     def _handle_job_list_page(self, pagenum, scraped_ls, init_lock):
+        driver = None
+        disp = None
         try:
-            init_lock.acquire()
-            driver_service = Service(executable_path=self.webdriver_dir, log_output=sys.stdout)
-            driver = undetected_chromedriver.Chrome(headless=False, use_subprocess=False, service=driver_service)
-            init_lock.release()
+            with init_lock:
+                if self.use_vdisplay:
+                    disp = Display(visible=0, size=(1920, 1080))
+                    disp.start()
+                option = Options()
+                if "Linux" in platform.system():
+                    option.add_argument("--disable-dev-shm-usage")
+                driver = undetected_chromedriver.Chrome(
+                    headless=False, 
+                    driver_executable_path=self.webdriver_dir,
+                    browser_executable_path=self.browser_dir,
+                    use_subprocess=False, 
+                    options=option
+                )
             target_url = self.init_url + f"&page={pagenum}"
             driver.get(target_url)
             job_cards_elem = []
@@ -106,7 +121,10 @@ class UpworkJobScrapeManager:
             logging.error(f"_handle_job_list_page met exception {traceback.format_exc()}")
             raise
         finally:
-            driver.quit()
+            if hasattr(driver, "quit"):
+                driver.quit()
+            if hasattr(disp, "stop"):
+                disp.stop()
 
     def _init_concurrency(self):
         for i in range(self.concurrency_factor):
@@ -136,6 +154,11 @@ class UpworkJobScrapeManager:
             json.dump(res_l, f)
         logging.info(f"waiting for subprocess gracefully quit...")
         time.sleep(5)
+        for p in self.ps:
+            try:
+                p.join(timeout=1)
+            except:
+                pass
     
     def do_sync(self):
         while len(self.scraped_job_ls) < self.total_job_scrape:

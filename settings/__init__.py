@@ -10,6 +10,7 @@ ENVS_ROOT = SETTINGS_ROOT
 PROJECT_ROOT = os.path.dirname(SETTINGS_ROOT)
 ASSETS_ROOT = os.path.join(PROJECT_ROOT, "assets")
 WEBDRIVER_DIR = os.path.join(ASSETS_ROOT, "bin", "chromedriver.exe")
+BROWSER_DIR = None
 
 # Scrape behavoir settings
 TOTAL_JOB_SCRAPE = 0
@@ -18,6 +19,7 @@ MAX_SLEEP_SEC = 0
 CONCURRENCY_FACTOR = 0
 UPOWORK_JOBS_ONE_PAGE = 0
 PAGELOAD_TIMEOUT = 0
+USE_VDISPLAY = 0
 
 ENVS = [os.path.splitext(filename)[0] for filename in os.listdir(ENVS_ROOT) if filename != "__init__.py"]
 if ENV in ENVS:

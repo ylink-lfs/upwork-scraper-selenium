@@ -160,3 +160,7 @@ cython_debug/
 
 # random files for debug
 out.json
+
+# heavy depedencies
+chromedriver
+chromedriver.exe

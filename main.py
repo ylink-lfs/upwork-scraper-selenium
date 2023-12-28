@@ -1,27 +1,15 @@
 import argparse
 import logging
 import os
-import requests
 import traceback
 
 import scraper
 import settings
 import utils
 
-from http.client import HTTPException
-
-
-proxies = { 
-              "http"  : "http://0.0.0.0:10809", 
-              "https" : "http://0.0.0.0:10809", 
-            }
 
 def check_environment():
     try:
-        # resp = requests.get("http://www.upwork.com/", proxies=proxies)
-        # if resp.status_code >= 500:
-        #     raise HTTPException
-
         if not os.path.exists(settings.WEBDRIVER_DIR):
             raise FileNotFoundError(f"Webdriver not found at path {settings.WEBDRIVER_DIR}")
     except:
@@ -39,7 +27,7 @@ if __name__ == "__main__":
         args = parser.parse_args()
         check_environment()
         initial_url = utils.concat_upwork_initial_url(args.main_category, args.sub_category)
-        doer = scraper.UpworkJobScrapeManager(initial_url, settings.WEBDRIVER_DIR, settings.TOTAL_JOB_SCRAPE, settings.UPOWORK_JOBS_ONE_PAGE, settings.MIN_SLEEP_SEC, settings.MAX_SLEEP_SEC, settings.PAGELOAD_TIMEOUT, settings.CONCURRENCY_FACTOR, args.output)
+        doer = scraper.UpworkJobScrapeManager(initial_url, settings.WEBDRIVER_DIR, settings.BROWSER_DIR, settings.USE_VDISPLAY, settings.TOTAL_JOB_SCRAPE, settings.UPOWORK_JOBS_ONE_PAGE, settings.MIN_SLEEP_SEC, settings.MAX_SLEEP_SEC, settings.PAGELOAD_TIMEOUT, settings.CONCURRENCY_FACTOR, args.output)
         doer.do()
         # doer.do_sync()
         if not os.path.exists(args.output) or os.path.getsize(args.output) == 0:

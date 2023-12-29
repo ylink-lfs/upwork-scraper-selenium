@@ -117,6 +117,7 @@ class UpworkJobScrapeManager:
             job_desc[key.text.strip()[:-1]] = val.text.strip()
         job_desc["url"] = detail_url
         logging.info(f"Scrape job {job_desc}")
+        # TODO: design concurrent writeback interface in case of huge scraping amount required
         scraped_ls.append(json.dumps(job_desc))
     
     def _handle_job_list_page(self, pagenum, scraped_ls, init_lock):
@@ -208,6 +209,7 @@ class UpworkJobScrapeManager:
             "scrape_start_time": scrape_start_time,
             "jobs": res_l
         }
+        # TODO: design dynamic final result writeback interface
         with open(self.output_dir, "w") as f:
             json.dump(res, f)
         logging.info(f"waiting for subprocess gracefully quit...")

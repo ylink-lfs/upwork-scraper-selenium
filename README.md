@@ -21,14 +21,14 @@ Place chromedriver with suitable version into assets path, then change webdriver
 ```bash
 # assume below commands are executed under Windows powershell
 $env:ENV = 'dev'
-python3 main.py --main_category 'Web, Mobile & Software Dev' --sub_category 'All' --output out.json
+python3 main.py --main_category 'Web, Mobile & Software Dev' --output out.json
 ```
 
 ### Linux
 
 ```bash
 export ENV=prod
-python3 main.py --main_category 'Web, Mobile & Software Dev' --sub_category 'All' --output out.json
+python3 main.py --main_category 'Web, Mobile & Software Dev' --output out.json
 ```
 
 ## Data Samples

@@ -12,7 +12,7 @@ python3 -m pip install -r requirements.txt
 
 ### Selenium releated
 
-Place chromedriver with suitable version into assets path, then change webdriver path specification under settings subsequently.
+Place chromedriver and chrome browser with suitable version into assets path, then change webdriver and chrome executable path specification under settings subsequently.
 
 ## Usage
 

@@ -26,6 +26,10 @@ class RetryLimitExceedException(Exception):
     pass
 
 
+class PageEmptyException(Exception):
+    pass
+
+
 def concat_upwork_initial_url(main_category):
     if main_category.startswith("'"):
         main_category = main_category[1:-1]

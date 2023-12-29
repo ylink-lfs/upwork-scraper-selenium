@@ -35,132 +35,163 @@ python3 main.py --main_category 'Web, Mobile & Software Dev' --output out.json
 
 ```json
 {
-    "scrape_start_time": 1703782341.7475863,
+    "scrape_start_ts": 1703867808.0236104,
     "jobs": [
         {
-            "title": "Website Developer - Wordpress Integration Specialist",
-            "description": "Merge and integrate the functionalities of two separate websites into a single Wordpress-based platform.\n\u2022 Develop and design a cohesive, user-friendly website that highlights the combined features of both products.\n\u2022 Customize and optimize the Wordpress platform to meet specific project needs.\n\u2022 Implement responsive design and ensure the website\u2019s compatibility across various devices.\n\nRequirements:\n\n\u2022 Proficiency in Wordpress development and customization.\n\u2022 Extensive experience in website integration and migration.\n\u2022 Strong understanding of HTML, CSS, JavaScript, and other relevant web technologies.\n\u2022 Proven track record of successfully merging multiple websites into a unified platform.\n\u2022 Creative mindset with an eye for design and user experience.\n\u2022 Excellent problem-solving skills and attention to detail.\n\nPreferred Qualifications:\n\n\u2022 Familiarity with SEO best practices and website optimization techniques.\n\u2022 Experience with e-commerce integration within Wordpress.\n\u2022 Knowledge of UI/UX",
-            "area_restriction": "Only freelancers located in the U.S. may apply.",
+            "title": "E-commerce Consultant",
+            "url": "https://www.upwork.com/jobs/commerce-Consultant_~01ed33641000a395d1/",
+            "scraped_ts": 1703867829.0134757,
+            "description": "Hands of Hope for Physical Therapy and Wellness is seeking a highly skilled and experienced E-commerce Consultant. As an E-commerce Consultant, you will play a crucial role in developing and implementing effective strategies to optimize our online presence and enhance our e-commerce operations. Your expertise will be instrumental in driving business growth and achieving our e-commerce objectives.",
+            "area_restriction": "US Only",
             "skill_and_expertise": [
-                "UX & UI",
                 "WooCommerce",
-                "CSS",
-                "WordPress",
-                "HTML",
-                "Website Customization",
-                "Web Development",
-                "Web Design",
-                "WordPress Development",
-                "Responsive Design"
+                "Ecommerce Website Development",
+                "Shopify"
             ],
-            "Project Type": "One-time project",
-            "Experience Level": "Intermediate",
-            "Duration": null,
-            "Contract To Fulltime": null,
-            "Estimated Job Duration": null,
-            "Estimated Job Pay": null,
-            "Remote Type": "Remote Job",
-            "Fixed-price": "$750.00",
-            "Proposals": "10 to 15",
-            "Last viewed by client": "7 minutes ago",
-            "Interviewing": "0",
-            "Invites sent": "0",
-            "Unanswered invites": "0",
-            "url": "https://www.upwork.com/jobs/Website-Developer-Wordpress-Integration-Specialist_~011167df9e81611550/"
+            "job_feature": {
+                "Contract To Fulltime": true,
+                "Duration": "3-6 months",
+                "Estimated Job Duration": "Less than 30 hrs/week",
+                "Estimated Job Pay": "$150.00 ~ $200.00",
+                "Experience Level": "Expert",
+                "Fixed-price": null,
+                "Project Type": "Complex project",
+                "Remote Type": "Remote Job"
+            },
+            "job_status": {
+                "Proposals": "Less than 5",
+                "Last viewed by client": "2 minutes ago",
+                "Interviewing": "0",
+                "Invites sent": "10",
+                "Unanswered invites": "10"
+            }
         },
         {
-            "title": "XLSM file to filter and calculate",
-            "description": "The goal of this app will be to filter, add and display results. We need to have a user friendly interface. One of our current apps is an xlsm file.\nI paste a csv copy of the data in the same folder as the xlsm file. The user then opens the xlsm file and it auto displays the needed results without any user interaction.\nI would like something similar to this. I need it as user friendly as possible.\n\nIt will be used to add all the values in a category. It needs to round up to the nearest quarter or half depending on choice. Then add the values required to round to the master category for each item field.\n\nItem 1 Master Category = 9.2\nItem 1 Category 2 = 1.4\nSum               10.6\nValue needed to round to nearest quarter. In the above case will need .15.\n10.6 + .15 =  10.75\nOnce the needed amount is calculated \u201cin the above case .15\u201d it needs to be added to the master category.\nIn this case it would be 9.35\n\nI can explain in more detail later.",
-            "area_restriction": "Only freelancers located in the U.S. may apply.",
+            "title": "Website Design and Improvement",
+            "url": "https://www.upwork.com/jobs/Website-Design-and-Improvement_~013304a0e93f4708af/",
+            "scraped_ts": 1703867830.7685492,
+            "description": "We are looking for a skilled web designer to enhance and improve the appearance of our construction company website. The main goal is to create a user-friendly and visually appealing website that accurately represents our brand and services. The ideal candidate should have experience in the following areas:\n\n- Web design\n- Responsive design\n- Graphic design",
+            "area_restriction": "US Only",
             "skill_and_expertise": [
-                "Microsoft Excel"
-            ],
-            "Project Type": "One-time project",
-            "Experience Level": "Intermediate",
-            "Duration": "< 1 month",
-            "Contract To Fulltime": null,
-            "Estimated Job Duration": "Less than 30 hrs/week",
-            "Estimated Job Pay": "$40.00 ~ $120.00",
-            "Remote Type": "Remote Job",
-            "Proposals": "Less than 5",
-            "Last viewed by client": "17 minutes ago",
-            "Interviewing": "0",
-            "Invites sent": "1",
-            "Unanswered invites": "1",
-            "url": "https://www.upwork.com/jobs/XLSM-file-filter-and-calculate_~01da9aa3d14ac709d2/"
-        },
-        {
-            "title": "Developer for Photo and Video Collection",
-            "description": "We are seeking a talented Developer to join our team and play a crucial role in enhancing our photo and video collection capabilities.\n\nResponsibilities:\n\nAs a Developer for Photo and Video Collection, you will be at the forefront of creating a seamless web-based system that integrates with our existing management platform. Your primary responsibilities will include:\n\nDevelop an automated system to prompt customers via email, encouraging them to share their photos and videos within 30 minutes of their experience.\n\nImplement a user-friendly interface for customers to easily upload content to the relevant dropbox folder.\n\nUtilize API data from our reservation system to automatically send personalized \"Thank You\" emails to customers, along with a request to share their content on social media.\n\nImplement a system that organizes uploaded content into location-specific dropbox folders, titled appropriately and organized by date.\n\nDevelop a tagging mechanism for online posts using designated hashtags based on city, tour name, and brand.\n\nCreate an automated process to combine videos or stitch together photos, generating a compelling 10-second clip highlighting the customer's experience.\n\nQualifications:\n-Proven experience in web development, API integration, and database management.\n-Strong proficiency in relevant programming languages and frameworks.\n-Excellent problem-solving skills and attention to detail.\n-Familiarity with multimedia processing and social media integration is a plus.\n\nIf you are passionate about creating innovative solutions that enhance customer engagement and exposure, we invite you to submit your proposaal,",
-            "area_restriction": "Only freelancers located in the U.S. may apply.",
-            "skill_and_expertise": [
-                "Web Development",
-                "CSS",
-                "Python",
-                "MySQL",
-                "PHP",
-                "HTML",
-                "API Integration",
-                "JavaScript"
-            ],
-            "Project Type": "Complex project",
-            "Experience Level": "Expert",
-            "Duration": "3-6 months",
-            "Contract To Fulltime": null,
-            "Estimated Job Duration": "Less than 30 hrs/week",
-            "Estimated Job Pay": "$40.00 ~ $50.00",
-            "Remote Type": "Remote Job",
-            "Proposals": "20 to 50",
-            "Last viewed by client": "14 hours ago",
-            "Interviewing": "8",
-            "Invites sent": "23",
-            "Unanswered invites": "14",
-            "url": "https://www.upwork.com/jobs/Developer-for-Photo-and-Video-Collection_~013f1cba04a2dfb9cf/"
-        },
-        {
-            "title": "Plan and build a responsive WordPress site for a marketing company and a Shopify store",
-            "description": "Marketing Site\nPlan session to build wireframe with different entry points\nDetermine best wordpress template\nProvide design that reflects marketing goals\nSet up website and launch\nWe will provide copy\n\nShopify site is to test campaigns based designs\nConversion drivenn design\nEmail capturing\nEasy one-click check out",
-            "area_restriction": "Only freelancers located in the U.S. may apply.",
-            "skill_and_expertise": [
-                "Web Development",
-                "Web Design",
                 "Graphic Design",
+                "Web Design",
+                "Web Development",
+                "Mockup",
                 "WordPress"
             ],
-            "Project Type": "Ongoing project",
-            "Experience Level": "Expert",
-            "Duration": "3-6 months",
-            "Contract To Fulltime": null,
-            "Estimated Job Duration": "Not Sure",
-            "Estimated Job Pay": "$35.00 ~ $45.00",
-            "Remote Type": "Remote Job",
-            "Proposals": "20 to 50",
-            "Interviewing": "0",
-            "Invites sent": "0",
-            "Unanswered invites": "0",
-            "url": "https://www.upwork.com/jobs/Plan-and-build-responsive-WordPress-site-for-marketing-company-and-Shopify-store_~015742c36c1997c5e1/"
+            "job_feature": {
+                "Contract To Fulltime": null,
+                "Duration": "6+ months",
+                "Estimated Job Duration": "Less than 30 hrs/week",
+                "Estimated Job Pay": "$15.00 ~ $30.00",
+                "Experience Level": "Intermediate",
+                "Fixed-price": null,
+                "Project Type": "Ongoing project",
+                "Remote Type": "Remote Job"
+            },
+            "job_status": {
+                "Proposals": "20 to 50",
+                "Last viewed by client": "2 days ago",
+                "Interviewing": "3",
+                "Invites sent": "3",
+                "Unanswered invites": "0"
+            }
         },
         {
-            "title": "E-commerce",
-            "description": "Need a photographer in Dallas, Texas area for upcoming products.",
-            "area_restriction": "Only freelancers located in the U.S. may apply.",
+            "title": "RESTful API Integration With Woo Commerce",
+            "url": "https://www.upwork.com/jobs/RESTful-API-Integration-With-Woo-Commerce_~016fbb07f06111f091/",
+            "scraped_ts": 1703867833.5303104,
+            "description": "Looking for someone to connect our vendor account with our woo commerce multi store wordpress site. Our vendor uses the RESTful API. See attached for more details on vendors API.\n\nThe end goal is to:\n\n- Automaticly update pricing\n- Automaticly update stock status\n\nWe would like to update all sites on our wordpress multisite network.\n\nIf we can get the vendors data to google sheets automatically that would be fine as an alternative solution.\n\nThanks in advance!",
+            "area_restriction": "US Only",
             "skill_and_expertise": [
-                "photographer",
-                "Graphic Design",
-                "Ecommerce Website"
+                "API Integration",
+                "API",
+                "WooCommerce"
             ],
-            "Project Type": "One-time project",
-            "Experience Level": "Intermediate",
-            "Duration": "< 1 month",
-            "Contract To Fulltime": null,
-            "Estimated Job Duration": "Less than 30 hrs/week",
-            "Estimated Job Pay": "$35.00 ~ $60.00",
-            "Remote Type": "Remote Job",
-            "Proposals": "Less than 5",
-            "Interviewing": "0",
-            "Invites sent": "0",
-            "Unanswered invites": "0",
-            "url": "https://www.upwork.com/jobs/commerce_~01bd2d0a6ac61cd75b/"
+            "job_feature": {
+                "Contract To Fulltime": null,
+                "Duration": "< 1 month",
+                "Estimated Job Duration": "Less than 30 hrs/week",
+                "Estimated Job Pay": "$50.00 ~ $75.00",
+                "Experience Level": "Intermediate",
+                "Fixed-price": null,
+                "Project Type": "One-time project",
+                "Remote Type": "Remote Job"
+            },
+            "job_status": {
+                "Proposals": "20 to 50",
+                "Last viewed by client": "3 days ago",
+                "Hires": "1",
+                "Interviewing": "0",
+                "Invites sent": "0",
+                "Unanswered invites": "0"
+            }
+        },
+        {
+            "title": "Wordpress designer needed for shamanic feminine design. Clean and elegant design",
+            "url": "https://www.upwork.com/jobs/Wordpress-designer-needed-for-shamanic-feminine-design-Clean-and-elegant-design_~01c28b7f853f07f455/",
+            "scraped_ts": 1703867657.6177545,
+            "description": "I'm looking for a designer who can help bring my vision and website to life.\n\nI've already got a sense of working design.  Copy written for the pages.  Gorgeous photos to integrate and am seeking someone who can help glue it all together.\n\nMy ideal candidate is a woman who can translate the mystery, magic and essence of my vision into life.\n\nI like clean design. I've got so much brand wise completed so it would literally be putting things together in a cohesive way that looks visually stunning and high end.  \n\nScope is: full website with links to social and email list opt in and a landing page for a program as part of the website.  \n\nThis isn't a complicated site.  It is for a personal brand.  \n\nI need someone organized, communicative and creative/ artistic who knows wordpress and would enjoy working with a spiritual business and feel inspired by getting to use her creativity.\n\nThemes for the site are\nShamanic\nCrone\nArchetype\nMagic\nDark Feminine\nMysterious\nPowerful\nSovereign\n\nFunctionality: We need a password protected part of the site to hold our recordings of content where it's user friendly.\n\nWe plan to add an email capture as well and have pages that are for masterclasses we might offer to entice people to learn more - with that we would need lead captures.\n\nThe rest of the site would be driving people to book a call with me.\n\nMenu might be:\nHome Page\nBook a Call\nFree Resources\nMasterclasses\n(hidden page) Course Files",
+            "area_restriction": "Global",
+            "skill_and_expertise": [
+                "Photo Editing",
+                "Squarespace",
+                "Visual Communication",
+                "Adobe Photoshop",
+                "Photo Manipulation",
+                "Graphic Design"
+            ],
+            "job_feature": {
+                "Contract To Fulltime": null,
+                "Duration": null,
+                "Estimated Job Duration": null,
+                "Estimated Job Pay": null,
+                "Experience Level": "Intermediate",
+                "Fixed-price": "$500.00",
+                "Project Type": "Ongoing project",
+                "Remote Type": "Remote Job"
+            },
+            "job_status": {
+                "Proposals": "Less than 5",
+                "Interviewing": "0",
+                "Invites sent": "0",
+                "Unanswered invites": "0"
+            }
+        },
+        {
+            "title": "Website Audit",
+            "url": "https://www.upwork.com/jobs/Website-Audit_~017e761a220ba01ff7/",
+            "scraped_ts": 1703867661.8435965,
+            "description": "SEO and speed analysis\nUsability and mobile compatibility check\nContent strategy evaluation\nVisual design review\nIn addition to the analysis, we expect:\n\nA detailed report highlighting issues and improvements\nRecommendations for visual and design enhancements\nCreation of a new design wireframe based on the suggestions",
+            "area_restriction": "Global",
+            "skill_and_expertise": [
+                "UX & UI Design",
+                "Landing Page",
+                "Shopify",
+                "SEO Audit",
+                "Web Design",
+                "SEO Competitor Analysis",
+                "Technical SEO",
+                "On-Page SEO",
+                "Search Engine Optimization",
+                "SEO Performance"
+            ],
+            "job_feature": {
+                "Contract To Fulltime": null,
+                "Duration": null,
+                "Estimated Job Duration": null,
+                "Estimated Job Pay": null,
+                "Experience Level": "Expert",
+                "Fixed-price": "$150.00",
+                "Project Type": "One-time project",
+                "Remote Type": "Remote Job"
+            },
+            "job_status": {
+                "Proposals": "10 to 15",
+                "Interviewing": "0",
+                "Invites sent": "0",
+                "Unanswered invites": "0"
+            }
         }
     ]
 }
